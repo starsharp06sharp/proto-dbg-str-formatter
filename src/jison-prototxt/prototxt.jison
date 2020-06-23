@@ -12,8 +12,7 @@ frac  "."[0-9]+
 
 [A-Za-z][A-za-z_0-9]*   return 'IDENT'
 {int}{frac}?{exp}?\b    return 'NUMBER'
-/* TODO: 好像识别不出"\346\214\207"这样的字符串*/
-\"(?:'\\'[\\"bfnrt/]|'\\u'[a-fA-F0-9]{4}|[^\\\0-\x09\x0a-\x1f"])*\" return 'STRING'
+\"(?:'\\'[\\"bfnrt/]|'\\'[0-7]{3}|[^\\\0-\x09\x0a-\x1f"])*\" return 'STRING'
 
 "{"      return '{'
 "}"      return '}'
