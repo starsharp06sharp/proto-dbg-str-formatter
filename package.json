@@ -10,15 +10,20 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:proto-dbg-str-formatter.helloWorld"
+		"onLanguage:prototxt"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "proto-dbg-str-formatter.helloWorld",
-				"title": "Hello World"
-			}
+		"languages": [
+            {
+                "id": "prototxt",
+                "aliases": [
+                    "prototxt"
+                ],
+                "extensions": [
+                    "prototxt"
+                ]
+            }
 		]
 	},
 	"scripts": {
