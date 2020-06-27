@@ -4,6 +4,7 @@
 	"description": "protobuf debug string formatter",
 	"version": "0.1.0",
 	"publisher": "leolzheng",
+	"repository": "https://github.com/starsharp06sharp/proto-dbg-str-formatter",
 	"engines": {
 		"vscode": "^1.45.0"
 	},

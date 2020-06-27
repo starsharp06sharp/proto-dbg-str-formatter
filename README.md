@@ -11,4 +11,4 @@ email: leolzheng@foxmail.com
 github issues: https://github.com/starsharp06sharp/proto-dbg-str-formatter/issues
 
 ## Preview:
-![screen_record](https://raw.githubusercontent.com/starsharp06sharp/proto-dbg-str-formatter/master/img/screen_record.gif)
+![screen_record](./img/screen_record.gif)
