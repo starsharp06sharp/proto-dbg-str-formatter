@@ -5,10 +5,29 @@ import { DomTree, parse as parse_prototxt } from './jison-prototxt/prototxt';
 
 let logger = vscode.window.createOutputChannel("proto-dbg-str-formatter");
 
+function tryTranslateUtf8EscapeStr(escapedStr: string): string {
+	if (escapedStr[0] !== '"') {
+		return escapedStr;
+	}
+	try {
+		// translate octal escaped character like '\\346' TO '\xe6'
+		let utf8Str = escapedStr.replace(/\\[0-7]{3}/g, val => {
+			return String.fromCharCode(parseInt(val.substring(1), 8));
+		});
+		if (utf8Str === escapedStr) {
+			return escapedStr;
+		}
+		return decodeURIComponent(escape(utf8Str));
+	} catch (error) {
+		logger.appendLine(`try traslate ${escapedStr} error: ${error}`);
+		return escapedStr;
+	}
+}
+
 function tarvelDomTree(tree: DomTree, tabStr: string, tabCount: number): string {
 	let prefix = tabStr.repeat(tabCount);
 	if (typeof tree.value === "string") {
-		return prefix + tree.key + ": " + tree.value + "\n";
+		return prefix + tree.key + ": " + tryTranslateUtf8EscapeStr(tree.value) + "\n";
 	}
 	let text = prefix + tree.key + " {\n";
 	tree.value.forEach(val => {
