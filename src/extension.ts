@@ -10,11 +10,18 @@ function tryTranslateUtf8EscapeStr(escapedStr: string): string {
 		return escapedStr;
 	}
 	try {
+		let unescaped = false;
 		// translate octal escaped character like '\\346' TO '\xe6'
-		let utf8Str = escapedStr.replace(/\\[0-7]{3}/g, val => {
-			return String.fromCharCode(parseInt(val.substring(1), 8));
+		let utf8Str = escapedStr.replace(/(\\)+[0-7]{3}/g, val => {
+			let len = val.length;
+			if (len % 2 !== 0) {
+				// deal with situation like '\\\\346'
+				return val;
+			}
+			unescaped = true;
+			return val.substring(0, len - 4) + String.fromCharCode(parseInt(val.substring(len - 3), 8));
 		});
-		if (utf8Str === escapedStr) {
+		if (!unescaped) {
 			return escapedStr;
 		}
 		return decodeURIComponent(escape(utf8Str));
