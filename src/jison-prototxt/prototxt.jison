@@ -10,7 +10,7 @@ frac  "."[0-9]+
 %%
 \s+      /* skip whitespace */
 
-[A-Za-z][A-za-z_0-9]*   return 'IDENT'
+[A-Za-z_][A-za-z_0-9]*   return 'IDENT'
 {int}{frac}?{exp}?\b    return 'NUMBER'
 \"(?:'\\'[\\"bfnrt/]|'\\'[0-7]{3}|[^\\\0-\x09\x0a-\x1f"])*\" return 'STRING'
 
