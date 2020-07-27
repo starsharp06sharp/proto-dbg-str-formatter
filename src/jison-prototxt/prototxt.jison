@@ -19,9 +19,6 @@ frac  "."[0-9]+
 "["      return '['
 "]"      return ']'
 ":"      return ':'
-"true"   return 'TRUE'
-"false"  return 'FALSE'
-"null"   return 'NULL'
 <<EOF>>  return 'EOF'
 .        return 'INVALID'
 
@@ -40,7 +37,7 @@ expressions
     ;
 
 basic_value:
-  NUMBER | STRING | TRUE | FALSE | NULL
+  NUMBER | STRING | IDENT
   { $$ = $1; }
   ;
 
