@@ -2,7 +2,7 @@
 	"name": "proto-dbg-str-formatter",
 	"displayName": "proto-dbg-str formatter",
 	"description": "protobuf debug string formatter",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"publisher": "leolzheng",
 	"repository": "https://github.com/starsharp06sharp/proto-dbg-str-formatter",
 	"engines": {
