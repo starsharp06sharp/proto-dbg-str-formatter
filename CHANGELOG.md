@@ -16,3 +16,6 @@
 ## 0.1.2
 
 - Bug Fix: cant format document which has enum values.
+
+## 0.2.0
+- Better error indication.

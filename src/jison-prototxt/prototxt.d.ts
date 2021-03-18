@@ -3,4 +3,8 @@ export class DomTree {
     value: string | DomTree[];
 }
 
-export declare function parse(text: string): DomTree[];
+export class Parser {
+    parse(input: string): DomTree[];
+}
+
+export declare let parser: Parser;
