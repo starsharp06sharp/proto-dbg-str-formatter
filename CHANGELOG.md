@@ -19,3 +19,6 @@
 
 ## 0.2.0
 - Better error indication.
+
+## 0.2.1
+- compliant \' in string literals.

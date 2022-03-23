@@ -12,7 +12,7 @@ frac  "."[0-9]+
 
 [A-Za-z_][A-za-z_0-9]*   return 'IDENT'
 {int}{frac}?{exp}?\b    return 'NUMBER'
-\"(?:'\\'[\\"bfnrt/]|'\\'[0-7]{3}|[^\\\0-\x09\x0a-\x1f"])*\" return 'STRING'
+\"(?:'\\'[\\"'bfnrt/]|'\\'[0-7]{3}|[^\\\0-\x09\x0a-\x1f"])*\" return 'STRING'
 
 "{"      return '{'
 "}"      return '}'
@@ -41,8 +41,13 @@ basic_value:
   { $$ = $1; }
   ;
 
+key_name:
+  IDENT | NUMBER
+  { $$ = $1; }
+  ;
+
 pair:
-  IDENT ':' basic_value
+  key_name ':' basic_value
   {
     $$ = {
       'key': $1,
@@ -50,7 +55,7 @@ pair:
     };
   }
   |
-  IDENT object
+  key_name object
   {
     $$ = {
       'key': $1,
