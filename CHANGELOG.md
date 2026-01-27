@@ -22,3 +22,6 @@
 
 ## 0.2.1
 - compliant \' in string literals.
+
+## 0.2.2
+- Support both `prototxt` and `textproto`.

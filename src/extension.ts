@@ -72,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
 	diagnosticCollection = vscode.languages.createDiagnosticCollection('prototxt');
 	context.subscriptions.push(diagnosticCollection);
 
-	vscode.languages.registerDocumentFormattingEditProvider('prototxt', {
+	let docFormattingEditProvider = {
 		provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
 			diagnosticCollection.clear();
 
@@ -119,8 +119,10 @@ export function activate(context: vscode.ExtensionContext) {
 				transParseResult2FormatedText(domTrees, "  "),
 			)];
 		}
-	});
+	};
 
+	vscode.languages.registerDocumentFormattingEditProvider('prototxt', docFormattingEditProvider);
+	vscode.languages.registerDocumentFormattingEditProvider('textproto', docFormattingEditProvider);
 }
 
 // this method is called when your extension is deactivated
